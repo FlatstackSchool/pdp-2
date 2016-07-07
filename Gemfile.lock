@@ -337,6 +337,8 @@ GEM
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
     stackprof (0.2.7)
+    subdomain_validation (1.0.0)
+      rails (~> 4.2, >= 4.2.6)
     sysexits (1.2.0)
     temple (0.7.7)
     therubyracer (0.12.1)
@@ -435,10 +437,14 @@ DEPENDENCIES
   spring
   spring-commands-rspec
   stackprof
+  subdomain_validation
   therubyracer
   uglifier (>= 2.7.2)
   web-console (~> 2.0)
   webmock
+
+RUBY VERSION
+   ruby 2.3.0p0
 
 BUNDLED WITH
    1.12.5
