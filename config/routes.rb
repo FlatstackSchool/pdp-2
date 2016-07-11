@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "users/registrations" }
 
-  resource :sign_up, only: %i(new create)
-  get "sign_up", to: "sign_ups#new"
+  resource :registration, only: %i(new create)
+  get "sign_up", to: "registrations#new"
 
   root to: "pages#home"
 end

@@ -1,4 +1,4 @@
-class SignUp
+class Registration
   include ActiveModel::Model
   include SubdomainValidation
 

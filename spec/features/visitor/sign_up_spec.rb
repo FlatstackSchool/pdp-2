@@ -1,14 +1,14 @@
 require "rails_helper"
 
 feature "Sign Up" do
-  let(:sign_up_attributes) { attributes_for(:sign_up) }
-  let(:registered_user) { User.find_by(email: sign_up_attributes[:email]) }
-  let(:registered_company) { Company.find_by(subdomain: sign_up_attributes[:subdomain]) }
+  let(:registration_attributes) { attributes_for(:registration) }
+  let(:registered_user) { User.find_by(email: registration_attributes[:email]) }
+  let(:registered_company) { Company.find_by(subdomain: registration_attributes[:subdomain]) }
 
   scenario "Visitor signs up" do
     visit sign_up_path
 
-    fill_form(:sign_up, sign_up_attributes)
+    fill_form(:registration, registration_attributes)
     click_button "Sign up"
 
     # open_email(registered_user.email)
