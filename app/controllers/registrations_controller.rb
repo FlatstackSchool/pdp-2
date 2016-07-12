@@ -5,7 +5,7 @@ class RegistrationsController < ApplicationController
   end
 
   def create
-    registration.save
+    SignUpUser.call(registration_attributes) if registration.valid?
     respond_with(registration, location: root_path)
   end
 

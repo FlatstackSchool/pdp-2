@@ -2,19 +2,16 @@ class Registration
   include ActiveModel::Model
   include SubdomainValidation
 
-  attr_accessor :subdomain, :email, :password, :password_confirmation
+  ATTRIBUTES = %i(subdomain email password password_confirmation).freeze
+
+  attr_accessor *ATTRIBUTES
 
   validates :subdomain, :email, :password, :password_confirmation, presence: true
+  validates :password, confirmation: true
   validates :email, format: Devise.email_regexp
   validates :subdomain, subdomain: true
   validate :unique_email
-
-  # TODO:
-  # * create user & company
-
-  def save
-    valid?
-  end
+  validate :unique_subdomain
 
   def attributes=(attributes)
     attributes.each do |key, value|
@@ -25,9 +22,7 @@ class Registration
   private
 
   def unique_email
-    if User.exists?(email: email)
-      errors.add(:email, "Email has already been taken.")
-    end
+    errors.add(:email, "Email has already been taken.") if User.exists?(email: email)
   end
 
   def unique_subdomain
