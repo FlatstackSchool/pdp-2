@@ -39,6 +39,11 @@
 * проект деплоится на Heroku;
 * законченные user stories ИПР
 
+### Для проверки
+
+* не использовать accept_nested_attributes
+* использовать Form Object при регистрации
+
 ## Dependencies
 
 * PostgreSQL 9.3
