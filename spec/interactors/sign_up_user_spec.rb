@@ -2,16 +2,20 @@ require "rails_helper"
 
 describe SignUpUser do
   let(:registration_attributes) { attributes_for(:registration) }
-
-  def call
-    described_class.call(registration_attributes)
-  end
+  let(:interactor) { described_class.new(registration_attributes) }
 
   it "creates user" do
-    expect { call }.to change { User.count }.by(1)
+    expect { interactor.call }.to change { User.count }.by(1)
   end
 
   it "creates company" do
-    expect { call }.to change { Company.count }.by(1)
+    expect { interactor.call }.to change { Company.count }.by(1)
+  end
+
+  it "sets saved user and company in context" do
+    interactor.call
+
+    expect(interactor.user).to be_persisted
+    expect(interactor.company).to be_persisted
   end
 end
