@@ -16,7 +16,8 @@ describe Registration, type: :model do
     let(:registration) { build(:registration, email: user.email) }
 
     it "validates email uniqueness" do
-      expect { registration.save }.to change { registration.errors[:email] }.to(["Email has already been taken."])
+      expect { registration.valid? }.to change { registration.errors[:email] }
+        .to(["Email has already been taken."])
     end
   end
 
@@ -25,7 +26,8 @@ describe Registration, type: :model do
     let(:registration) { build(:registration, subdomain: company.subdomain) }
 
     it "validates subdomain uniqueness" do
-      expect { registration.save }.to change { registration.errors[:subdomain] }.to(["Subdomain has already been taken."])
+      expect { registration.valid? }.to change { registration.errors[:subdomain] }
+        .to(["Subdomain has already been taken."])
     end
   end
 end

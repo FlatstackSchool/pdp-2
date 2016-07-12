@@ -4,7 +4,7 @@ class Registration
 
   ATTRIBUTES = %i(subdomain email password password_confirmation).freeze
 
-  attr_accessor *ATTRIBUTES
+  attr_accessor(*ATTRIBUTES)
 
   validates :subdomain, :email, :password, :password_confirmation, presence: true
   validates :password, confirmation: true
@@ -26,8 +26,6 @@ class Registration
   end
 
   def unique_subdomain
-    if Company.exists?(subdomain: subdomain)
-      errors.add(:subdomain, "Subdomain has already been taken.")
-    end
+    errors.add(:subdomain, "Subdomain has already been taken.") if Company.exists?(subdomain: subdomain)
   end
 end

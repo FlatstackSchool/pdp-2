@@ -1,8 +1,5 @@
 FactoryGirl.define do
   factory :account do
-    company nil
-user nil
-role "MyString"
+    owner false
   end
-
 end
