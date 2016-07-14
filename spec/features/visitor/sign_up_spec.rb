@@ -6,7 +6,8 @@ feature "Sign Up" do
   let(:registered_company) { Company.find_by(subdomain: registration_attributes[:subdomain]) }
 
   scenario "Visitor signs up" do
-    visit sign_up_path
+    visit root_path
+    click_link "Sign up"
 
     fill_form(:registration, registration_attributes)
     click_button "Sign up"

@@ -1,15 +1,16 @@
 class SignUpUser
   include Interactor
 
-  delegate :subdomain, :email, :password, :password_confirmation, :user, :company, to: :context
+  delegate :subdomain, :email, :password, :password_confirmation, :user, :company, :account, to: :context
 
   def call
     ActiveRecord::Base.transaction do
-      context.user = User.create(user_attributes)
-      context.company = user.companies.create(company_attributes)
+      context.user = User.create!(user_attributes)
+      context.company = Company.create!(company_attributes)
+      context.account = Account.create!(account_attributes)
     end
-
-    context.fail! unless valid?
+  rescue ActiveRecord::StatementInvalid
+    context.fail!
   end
 
   private
@@ -22,7 +23,7 @@ class SignUpUser
     { subdomain: subdomain }
   end
 
-  def valid?
-    user.valid? && company.valid?
+  def account_attributes
+    { user: user, company: company, owner: true }
   end
 end
