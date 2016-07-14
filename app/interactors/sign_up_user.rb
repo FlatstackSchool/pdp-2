@@ -5,10 +5,11 @@ class SignUpUser
 
   def call
     ActiveRecord::Base.transaction do
-      context.user = User.create!(user_attributes)
-      context.company = user.companies.create!(company_attributes)
-      context.fail! unless valid?
+      context.user = User.create(user_attributes)
+      context.company = user.companies.create(company_attributes)
     end
+
+    context.fail! unless valid?
   end
 
   private

@@ -1,17 +1,24 @@
 class RegistrationsController < ApplicationController
-  expose(:registration, attributes: :registration_attributes)
+  expose(:registration, attributes: :form_attributes)
 
   def new
   end
 
   def create
-    SignUpUser.call(registration_attributes) if registration.valid?
+    RegisterUser.call(registration_attributes) if registration.valid?
+
     respond_with(registration, location: root_path)
   end
 
   private
 
+  def form_attributes
+    params
+      .fetch(:registration, {})
+      .permit(:subdomain, :email, :password, :password_confirmation)
+  end
+
   def registration_attributes
-    params.fetch(:registration, {}).permit(:subdomain, :email, :password, :password_confirmation)
+    form_attributes.merge(warden: warden)
   end
 end
