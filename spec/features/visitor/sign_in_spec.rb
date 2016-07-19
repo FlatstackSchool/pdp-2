@@ -23,10 +23,4 @@ feature "Sign In" do
     expect(page).to have_content("Sign in")
     expect(page).to have_content("Invalid email or password")
   end
-
-  scenario "Visitor signs in with unconfirmed email address" do
-    sign_in(unconfirmed_user.email, user.password)
-
-    expect(page).to have_content("You have to confirm your email address before continuing.")
-  end
 end

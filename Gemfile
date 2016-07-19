@@ -41,6 +41,7 @@ gem "responders"
 gem "rollbar"
 gem "seedbank"
 gem "stackprof"
+gem "subdomain_validation"
 
 group :staging, :production do
   gem "newrelic_rpm"
