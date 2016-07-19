@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :user
+
   devise_scope :user do
     resource :sessions, only: %i(create)
 
