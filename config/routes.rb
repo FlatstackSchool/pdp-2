@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { registrations: "users/registrations" }
+  devise_for :users
 
   resource :registration, only: %i(new create)
   get "sign_up", to: "registrations#new"
