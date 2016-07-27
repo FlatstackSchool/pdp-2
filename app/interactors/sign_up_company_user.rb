@@ -1,4 +1,4 @@
-class SignUpUser
+class SignUpCompanyUser
   include Interactor
 
   delegate :subdomain, :email, :password, :password_confirmation, :user, :company, :account, to: :context
@@ -6,10 +6,10 @@ class SignUpUser
   def call
     ActiveRecord::Base.transaction do
       context.user = User.create!(user_attributes)
-      context.company = Company.create!(company_attributes)
+      context.company = Company.find_by!(subdomain: subdomain)
       context.account = Account.create!(account_attributes)
     end
-  rescue ActiveRecord::StatementInvalid, ActiveRecord::RecordInvalid => e
+  rescue ActiveRecord::StatementInvalid, ActiveRecord::RecordInvalid, ActiveRecord::RecordNotFound => e
     context.fail!(message: e.message)
   end
 
@@ -24,6 +24,6 @@ class SignUpUser
   end
 
   def account_attributes
-    { user: user, company: company, owner: true }
+    { user: user, company: company, owner: false }
   end
 end

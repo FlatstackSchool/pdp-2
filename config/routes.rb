@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
 
   resource :registration, only: %i(new create)
+  resource :company_registration, only: %i(new create)
 
   root to: "pages#home"
 end

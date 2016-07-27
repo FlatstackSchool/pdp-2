@@ -2,8 +2,6 @@ require "rails_helper"
 
 feature "Sign Up" do
   let(:registration_attributes) { attributes_for(:registration) }
-  let(:registered_user) { User.find_by(email: registration_attributes[:email]) }
-  let(:registered_company) { Company.find_by(subdomain: registration_attributes[:subdomain]) }
 
   scenario "Visitor signs up" do
     visit root_path
