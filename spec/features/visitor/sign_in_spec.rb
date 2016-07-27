@@ -2,6 +2,8 @@ require "rails_helper"
 
 feature "Sign In" do
   let(:user) { create :user }
+  let(:company) { create :company }
+  let!(:account) { create :account, company: company, user: user }
 
   def sign_in(email, password)
     visit sign_in_path
@@ -13,6 +15,7 @@ feature "Sign In" do
   scenario "Visitor signs in with valid credentials" do
     sign_in(user.email, user.password)
 
+    expect(current_url).to eq "http://#{company.subdomain}.lvh.me/"
     expect(page).to have_content("Sign out")
   end
 

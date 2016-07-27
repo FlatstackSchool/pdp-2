@@ -3,7 +3,7 @@ class SessionsController < Devise::SessionsController
     root_url(subdomain: user.companies.first.subdomain)
   end
 
-  def after_sign_out_path_for(user)
+  def after_sign_out_path_for(_user)
     root_url(subdomain: nil)
   end
 end
