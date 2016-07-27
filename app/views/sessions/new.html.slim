@@ -4,16 +4,7 @@
 
 .row
   .medium-6.columns
-    = simple_form_for resource,
-        as: resource_name,
-        url: session_path(resource_name) do |f|
-
-      legend
-        | Enter your
-        '
-        strong Rails Base example site
-        '
-        | account
+    = simple_form_for(resource, url: sessions_path) do |f|
 
       .form-inputs
         = f.input :email, required: false, autofocus: true
@@ -24,4 +15,6 @@
         = f.button :submit, "Sign in"
 
   .medium-6.columns.end
-    = render "users/shared/links"
+    h6 Anything else?
+    ul.links
+      li = link_to "Create a new account", sign_up_path
