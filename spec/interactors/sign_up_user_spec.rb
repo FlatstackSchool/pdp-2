@@ -13,8 +13,8 @@ describe SignUpUser do
     expect { interactor.run }.to change { Company.count }.by(1)
   end
 
-  it "creates account" do
-    expect { interactor.run }.to change { Account.count }.by(1)
+  it "creates owner account" do
+    expect { interactor.run }.to change { Account.owners.count }.by(1)
   end
 
   it "sets saved user and company in context" do

@@ -23,3 +23,8 @@ en:
       create:
         notice: 'Welcome! You have signed up successfully.'
         alert: '%{resource_name} could not be completed.'
+    company_registrations:
+      create:
+        notice: 'Welcome! You have signed up successfully.'
+    companies_authentication:
+      alert: 'Company with subdomain "%{subdomain}" does not exist.'

@@ -5,9 +5,14 @@ class RegistrationsController < ApplicationController
   end
 
   def create
-    RegisterUser.call(registration_attributes) if registration.valid?
+    result = RegisterUser.call(registration_attributes)
 
-    respond_with(registration, location: root_path)
+    if result.success?
+      redirect_to(root_path, notice: t("flash.registrations.create.notice"))
+    else
+      flash.now[:error] = result.message
+      render :new
+    end
   end
 
   private
