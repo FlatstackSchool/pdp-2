@@ -7,6 +7,8 @@ feature "Sign Up" do
     visit root_path
     click_link "Sign up"
 
+    expect(page).to have_content "Sign up new company"
+
     fill_form(:registration, registration_attributes)
     click_button "Sign up"
 

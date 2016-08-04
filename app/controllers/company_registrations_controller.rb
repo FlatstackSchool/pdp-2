@@ -8,7 +8,7 @@ class CompanyRegistrationsController < ApplicationController
     result = RegisterCompanyUser.call(registration_attributes)
 
     if result.success?
-      redirect_to(root_path, notice: "Welcome! You have signed up successfully.")
+      redirect_to(root_path, notice: t("flash.company_registrations.create.notice"))
     else
       flash.now[:error] = result.message
       render :new
